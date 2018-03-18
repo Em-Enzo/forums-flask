@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Topic Add </title>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<form action="{{url_for("topic_add") }}" method="post">
+		<input type="text" name="title"/>
+		<input type="text" name="content"/>
+		<input type="submit" name="Create"/>
+	</form>
+
+</body>
+</html>
