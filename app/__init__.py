@@ -1,5 +1,6 @@
-from flask import Flask, render_template
-import models, stores, dummy_data
+from flask import Flask
+import stores, models, dummy_data
+import views
 
 
 app = Flask(__name__)

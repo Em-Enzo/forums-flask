@@ -81,7 +81,7 @@ class MemberStore(BaseStore):
           member.posts.append(post)
       return all_members
 
-    def get_top_two():
+    def get_top_two(self, all_posts):
       # returs the top two participation members
       all_members = list(self.get_members_with_posts(all_posts))
       all_members.sort(key= lambda element: len(element.posts), reverse= True) 
