@@ -7,7 +7,6 @@ import stores
 
 
 def create_members():
-
 	member1 =models.Member("John", 23) 
 	member2 = models.Member("Sara", 24)
 	member3 = models.Member("Enzo", 25)
