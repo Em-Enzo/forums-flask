@@ -1,28 +1,36 @@
-body {
-    font-size: 20px
+body{text-align: center;}
+
+#title {
+	margin: 20px auto;        	
+	font-size: 40px;
+	font-weight: bold;
 }
 
-.content {
-    max-width: 600px;
-    margin: 0 auto;
-    border-top: 1px solid #ccc;
-    padding: 20px;
+#member-control{
+	margin: auto;
+	font-size: 20px;
 }
 
-table td {
-    min-width: 100px;
+.posts-control {
+    margin: auto;
+    max-width: 75%;
+    font-size: 20px;
 }
 
-    table td:first-child {
-        min-width: 400px;
-    }
-
-thead {
+ .posts-control table tr > :first-child {
     text-align: left;
+    width:100%;
 }
 
-.centered-item {
-    text-align: center;
-    margin: 10px auto;
+.posts-control table td ,
+.posts-control table th{
+    padding: 0px 25px;
 }
 
+footer{
+    margin-top: 100px;
+    font-family: "Comic Sans MS";
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+}

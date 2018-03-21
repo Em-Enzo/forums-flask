@@ -1,51 +1,51 @@
-from flask import Flask, render_template, request, redirect, url_for, abort 
-import models
-from app import app, post_store, member_store
+from flask import render_template, request, redirect, url_for, abort
+from app import app, post_store, models
 
 
 @app.route("/")
-@app.route("/index/")
+@app.route("/index")
 def home():
-	return render_template("index.html", posts = post_store.get_all())
+    return render_template("index.html", posts=enumerate(post_store.get_all()))
 
 
-@app.route("/topic/add/", methods = ["GET", "POST"])
+@app.route("/topic/add", methods=["GET", "POST"])
 def topic_add():
-	if request.method == "POST":
-		new_post = models.Post(request.form["title"], request.form["content"])
-		post_store.add(new_post)
-		return redirect(url_for("home"))
-	else:
-		return render_template("topic_add.html")
+    if request.method == "POST":
+        new_post = models.Post(request.form["title"], request.form["content"])
+        post_store.add(new_post)
+        return redirect(url_for("home"))
+    else:
+        return render_template("topic_add.html")
 
 
-@app.route("/topic/edit/<int:id>", methods = ["GET", "POST"])
-def topic_update(id):
-	post = post_store.get_by_id(id)
-	if request.method == "POST":
-		post.title = request.form["title"]
-		post.content = request.form["content"]
-		post_store.update(post)
-		result = redirect(url_for("home"))
-	elif request.method == "GET":
-		result = render_template("topic_update.html", post= post_store.get_by_id(id))
-	return result
+@app.route("/topic/edit/<int:post_id>", methods=["GET", "POST"])
+def topic_edit(post_id):
+    post_to_edit = post_store.get_by_id(post_id)	
+    if request.method == "POST":
+        post_to_edit.title = request.form["title"]
+        post_to_edit.content = request.form["content"]
+        return redirect(url_for("home"))
+    else:
+        title = post_to_edit.title
+        content = post_to_edit.content
+        return render_template("topic_add.html", title=title, content=content, post_id=post_id)
+	if post_to_edit is None:
+		abort(404)
+
+@app.route("/topic/show/<int:post_id>")
+def topic_show(post_id):
+    post_to_show = post_store.get_by_id(post_id)
+    title = post_to_show.title
+    content = post_to_show.content
+    return render_template("topic_show.html", title=title, content=content)
 
 
-@app.route("/topic/show/<int:id>")
-def topic_show(id):
-	post = post_store.get_by_id(id)
-	return render_template("topic_show.html", post= post)
-
-
-@app.route("/topic/delete/<int:id>")
-def topic_delete(id):
-	post_store.delete(id)
-	return redirect(url_for("home"))
+@app.route("/topic/delete/<int:post_id>")
+def topic_delete(post_id):
+    post_store.delete(post_id)
+    return redirect(url_for("home"))
 
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("404.html", message=error.description)
-
-
+    return render_template('404.html', message = error.description)
