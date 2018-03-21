@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title> Topic Add </title>
-	<link rel="stylesheet" type="text/css" href="/static/style.css">
-	<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <title>Add topic</title>
 </head>
 <body>
-	<form action="{{url_for("topic_add") }}" method="post">
-		<input type="text" name="title"/>
-		<input type="text" name="content"/>
-		<input type="submit" name="Create"/>
+	<form 	{% if post_id %}
+				action="{{url_for("topic_edit",post_id=post_id)}}"
+			{% else: %}
+				action=" {{ url_for("topic_add") }} "
+			{% endif %}
+			method="post">
+	<input type="text" name="title" {% if title %} value="{{title}}" {% endif %} />
+	<input type="text" name="content" {% if content%} value="{{content}}" {% endif %} />
+	<input type="submit" {% if post_id %} value="Edit" {% else: %} value="Create" {% endif %} />
 	</form>
-
 </body>
 </html>
