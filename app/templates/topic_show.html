@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Topic Show </title>
-	<link rel="stylesheet" type="text/css" href="/static/style.css">
-	<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
 </head>
 <body>
-	<div>{{ post.title }}</div>
-	<div>{{ post.content }}</div>
+	<table>
+		<tr>
+			<th>
+				Title
+			</th>
+			<td>
+				{{title}}
+			</td>
+		</tr>
+		<th>
+			Content
+		</th>
+		<td>
+			{{content}}
+		</td>
+	</table>
+
 </body>
 </html>
