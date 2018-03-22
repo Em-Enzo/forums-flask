@@ -1,0 +1,10 @@
+# comipled files
+*.pyc
+
+
+# pycache
+__pycache__/
+
+
+
+
