@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort, jsonify
 from app import app, post_store, models
 
 
@@ -25,12 +25,13 @@ def topic_edit(post_id):
         post_to_edit.title = request.form["title"]
         post_to_edit.content = request.form["content"]
         return redirect(url_for("home"))
+    elif post_to_edit is None:
+		abort(404)
     else:
         title = post_to_edit.title
         content = post_to_edit.content
         return render_template("topic_add.html", title=title, content=content, post_id=post_id)
-	if post_to_edit is None:
-		abort(404)
+	
 
 @app.route("/topic/show/<int:post_id>")
 def topic_show(post_id):
@@ -49,3 +50,5 @@ def topic_delete(post_id):
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html', message = error.description)
+
+
