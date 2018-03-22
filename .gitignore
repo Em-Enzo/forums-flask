@@ -7,3 +7,11 @@ venv
 
 # PyCharm
 .idea
+
+
+# vscode
+.vscode
+
+
+#pycach
+__pycache__
