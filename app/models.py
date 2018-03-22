@@ -14,6 +14,14 @@ class Member(object):
 		#return f"Name: {self.name}, Age: {self.age}"
 		return "Name: {}, Age: {}".format(self.name, self.age)
 
+	def __dict__(self):
+		return {
+			"id": self.id,
+			"name": self.name,
+			"age": self.age,
+			"posts": self.posts,
+		}
+
 class Post(object):
 	"""the post's manupilations class"""
 	def __init__(self, title, content, member_id= 0):
@@ -26,5 +34,12 @@ class Post(object):
 
 	def __str__(self):
 		#return f"Title: {self.title}, Content: {self.content}"
-		return "Title: {}, Content: {}".format(self.title, self.topic)
+		return "Title: {}, Content: {}".format(self.title, self.content)
     
+	def __dict__(self):
+		return {
+			"id": self.id,
+			"title": self.title,
+			"content": self.content,
+			"member_id": self.member_id,
+		}
