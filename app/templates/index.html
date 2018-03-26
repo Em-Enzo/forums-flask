@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Forums Workshop</title>
-    <link rel="stylesheet" href="/static/style.css">	
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+   crossorigin="anonymous"></script>	
 </head>
 <body>
 <div id=title>
@@ -28,11 +31,14 @@
 	<tr>
         <td><a href="{{ url_for("topic_show"  ,post_id = post.id) }}">{{ index + 1 }} {{"•"+post.title}}</a></td>
         <td><a href="{{ url_for("topic_edit"  ,post_id = post.id) }}">edit</a></td>
-        <td><a href="{{ url_for("topic_delete",post_id = post.id) }}">delete</a></td>
+        <td><a id="deleteBtn"  href="#" post_id="{{ post.id) }}">delete</a></td>
     </tr>
     {%endfor%}
 </table>
 </div>
+
+<!-- imported js file -->
+<script src="/static/javaScript.js"></script>
 </body>
 <footer>
     Done by: Em-Enzo
