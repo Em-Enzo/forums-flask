@@ -27,7 +27,7 @@ class BaseStore(object):
         all_item_instances = self.get_all()
         result = None 
         for item_instance in all_item_instances:
-          if item_instance.id == self.last_id :
+          if item_instance.id == self._last_id :
               result = item_instance
               break  
         return result
