@@ -1,5 +1,5 @@
 from flask import jsonify, request, abort
-import models
+from app import models
 from app import app, member_store, post_store
 
 

@@ -20,18 +20,18 @@ def topic_add():
 
 @app.route("/topic/edit/<int:post_id>", methods=["GET", "POST"])
 def topic_edit(post_id):
-    post_to_edit = post_store.get_by_id(post_id)	
+    post_to_edit = post_store.get_by_id(post_id)
+    if post_to_edit is None:
+        abort(404)	
     
     if request.method == "POST":
         post_to_edit.title = request.form["title"]
         post_to_edit.content = request.form["content"]
         return redirect(url_for("home"))
-    elif post_to_edit is None:
-		abort(404)
     else:
         title = post_to_edit.title
         content = post_to_edit.content
-        return render_template("topic_add.html", title=title, content=content, post_id=post_id)
+        return render_template("topic_update.html", title=title, content=content, post_id=post_id)
 	
 
 @app.route("/topic/show/<int:post_id>")
